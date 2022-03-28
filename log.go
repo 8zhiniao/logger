@@ -100,7 +100,7 @@ func NewAdapter(logFormat string, level string, logFile string, maxSize int, max
 func initLoggerFromParams(logFormat string, level string, logFile string, maxSize int, maxbackups int, maxAge int, localTime bool, compress bool) *zap.SugaredLogger {
 
 	logCore := setZapLoggerCore(logFormat, logFile, maxSize, maxAge, maxbackups, localTime, compress)
-	Log := zap.New(logCore, zap.AddCaller(), zap.AddCallerSkip(2))
+	Log := zap.New(logCore, zap.AddCaller(), zap.AddCallerSkip(3))
 	//logger, _ := zap.NewProduction()
 
 	initLogger := Log.Sugar()
