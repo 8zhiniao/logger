@@ -45,25 +45,25 @@ type Slogger struct {
 	suger *zap.SugaredLogger
 }
 
-/*
-type Log interface {
+type Loggor interface {
 	Trace()
 	Debug()
 	Info()
 	Warn()
 	Error()
-	Panic()
-	Fatal()
+	/*
+		Panic()
+		Fatal()
 
-	Tracef()
-	Debugf()
-	Infof()
-	Warnf()
-	Errorf()
-	Fatalf()
-	Panicf()
+		Tracef()
+		Debugf()
+		Infof()
+		Warnf()
+		Errorf()
+		Fatalf()
+		Panicf()
+	*/
 }
-*/
 
 func InitLoggerFromParams(logFormat string, level string, logFile string, maxSize int, maxbackups int, maxAge int, localTime bool, compress bool) {
 
@@ -211,34 +211,34 @@ func setZapLoggerCore(logFormat string, logFile string, maxSize int, maxAge int,
 }
 
 // Debug 使用方法：log.Debug("test")
-func Debug(args ...interface{}) {
+func (l *Logger) Debug(args ...interface{}) {
 
 	//initLogger.Debug(args...)
 	//Logger.Sugar().Debug(args...)
 	//SSlogger.suger.Debug(args...)
-	logger.adapter.Debug(args...)
+	l.adapter.Debug(args...)
 
 }
 
-func Info(args ...interface{}) {
+func (l *Logger) Info(args ...interface{}) {
 
 	//initLogger.Info(args...)
 	//Logger.Sugar().Info(args...)
 	//SSlogger.suger.Debug(args...)
-	logger.adapter.Info(args...)
+	l.adapter.Info(args...)
 
 }
 
-func Warn(args ...interface{}) {
+func (l *Logger) Warn(args ...interface{}) {
 
 	//initLogger.Warn(args...)
-	logger.adapter.Warn(args...)
+	l.adapter.Warn(args...)
 
 }
 
-func Error(args ...interface{}) {
+func (l *Logger) Error(args ...interface{}) {
 
-	initLogger.Error(args...)
+	l.adapter.Error(args...)
 }
 
 func Panic(args ...interface{}) {
